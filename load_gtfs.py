@@ -33,7 +33,7 @@ def main():
                 else:
                     insert_row.append(value)
                     
-            insert_sql = "INSERT IGNORE INTO %s (%s) VALUES (%s);" % (table, ','.join(columns), ','.join(insert_row))
+            insert_sql = "INSERT INTO %s (%s) VALUES (%s);" % (table, ','.join(columns), ','.join(insert_row))
             cursor.execute(insert_sql)
         conn.commit()
 
