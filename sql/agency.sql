@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS `agency`;
+
 CREATE TABLE `agency` (
     agency_id VARCHAR(11) PRIMARY KEY,
     agency_name VARCHAR(255),
