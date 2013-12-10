@@ -30,13 +30,14 @@ def calendar(connection):
     cursor.execute("SELECT service_id, start_date, end_date FROM calendar;")
     row = cursor.fetchone()
     while row is not None:
-        service_id = int(row[0])
+        service_id = row[0]
         start_date = row[1]
         end_date = row[2]
-        sql = "UPDATE calendar SET start_date_timestamp=%d, end_date_timestamp=%d WHERE service_id=%d AND start_date='%s' AND end_date='%s'" % (convert_date_string_to_timestamp(start_date), convert_date_string_to_timestamp(end_date), service_id, start_date, end_date)
+        sql = "UPDATE calendar SET start_date_timestamp=%d, end_date_timestamp=%d WHERE service_id='%s' AND start_date='%s' AND end_date='%s'" % (convert_date_string_to_timestamp(start_date), convert_date_string_to_timestamp(end_date), service_id, start_date, end_date)
         insert_cursor.execute(sql)
         row = cursor.fetchone()
         
+    connection.commit()
     cursor.close()
     insert_cursor.close()
     
@@ -49,12 +50,13 @@ def calendar_dates(connection):
     cursor.execute("SELECT service_id, date FROM calendar_dates;")
     row = cursor.fetchone()
     while row is not None:
-        service_id = int(row[0])
+        service_id = row[0]
         date = row[1]
-        sql = "UPDATE calendar_dates SET date_timestamp=%d WHERE service_id=%d AND date='%s'" % (convert_date_string_to_timestamp(date), service_id, date)
+        sql = "UPDATE calendar_dates SET date_timestamp=%d WHERE service_id='%s' AND date='%s'" % (convert_date_string_to_timestamp(date), service_id, date)
         insert_cursor.execute(sql)
         row = cursor.fetchone()
         
+    connection.commit()
     cursor.close()
     insert_cursor.close()
 
@@ -67,14 +69,15 @@ def stop_times(connection):
     cursor.execute("SELECT trip_id, arrival_time, departure_time, stop_id FROM stop_times;")
     row = cursor.fetchone()
     while row is not None:
-        trip_id = int(row[0])
+        trip_id = row[0]
         arrival_time = row[1]
         departure_time = row[2]
         stop_id = int(row[3])
-        sql = "UPDATE stop_times SET arrival_time_seconds=%d, departure_time_seconds=%d WHERE trip_id=%d AND stop_id=%d AND arrival_time='%s' AND departure_time='%s'" % (convert_time_string_to_seconds(arrival_time), convert_time_string_to_seconds(departure_time), trip_id, stop_id, arrival_time, departure_time)
+        sql = "UPDATE stop_times SET arrival_time_seconds=%d, departure_time_seconds=%d WHERE trip_id='%s' AND stop_id=%d AND arrival_time='%s' AND departure_time='%s'" % (convert_time_string_to_seconds(arrival_time), convert_time_string_to_seconds(departure_time), trip_id, stop_id, arrival_time, departure_time)
         insert_cursor.execute(sql)
         row = cursor.fetchone()
         
+    connection.commit()
     cursor.close()
     insert_cursor.close()
 

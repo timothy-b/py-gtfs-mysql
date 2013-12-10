@@ -11,6 +11,9 @@ CREATE TABLE `calendar` (
 	saturday TINYINT(1),
 	sunday TINYINT(1),
 	start_date VARCHAR(8),	
-	end_date VARCHAR(8),
-	KEY `service_id` (service_id)
+	end_date VARCHAR(8),start_date_timestamp INT(11),
+    end_date_timestamp INT(11),
+    KEY `service_id` (service_id),
+    KEY `start_date_timestamp` (start_date_timestamp),
+    KEY `end_date_timestamp` (end_date_timestamp)
 );
