@@ -1,11 +1,10 @@
 DROP TABLE IF EXISTS `shapes`;
 
 CREATE TABLE `shapes` (
-	shape_id INT(11),
-	shape_code VARCHAR(8),
-	shape_pt_lat DECIMAL(8,6),
-	shape_pt_lon DECIMAL(8,6),
-	shape_pt_sequence INT(11),
-	shape_dist_traveled DECIMAL(8,6),
+  shape_id VARCHAR(10) NOT NULL,
+  shape_pt_lat DECIMAL(9,6) NOT NULL,
+  shape_pt_lon DECIMAL(9,6) NOT NULL,
+  shape_pt_sequence INTEGER(5) NOT NULL,
+  shape_dist_traveled DECIMAL(7,4),
 	PRIMARY KEY (shape_id, shape_pt_sequence)
 );

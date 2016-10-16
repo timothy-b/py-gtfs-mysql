@@ -1,5 +1,5 @@
-GTFS MySQL IMPORT SCRIPT
-Author: Tom Lee (thomas.j.lee@gmail.com)
+##GTFS MySQL IMPORT SCRIPT
+_Author: Tom Lee (thomas.j.lee@gmail.com)_
 
 This is a simple set of scripts that will import a GTFS dataset into
 a lightweight MySQL database.  The work is based on Washington, DC's
@@ -11,11 +11,12 @@ In addition to the GTFS fields, a number of columns have been created
 to assist in the conversion of GTFS's string-based date/time 
 representations to more useful Unix timestamp-style second counts.
 
-DEAD-SIMPLE USAGE:
+####DEAD-SIMPLE USAGE:
 
 1. Create a database, e.g. CREATE DATABASE gtfs
 
 2. Run table creation scripts against the database:
+
 
 	cat sql/*.sql | mysql -p -u USERNAME -h HOST -D gtfs
 	
@@ -25,10 +26,23 @@ DEAD-SIMPLE USAGE:
 
 5. Run the import script:
 
+
 	python load_gtfs.py
 	
 6. Run the time index creation script:
 
+
 	python build_indices.py
 	
 7. Build something neat
+
+####EVEN MORE SIMPLE USAGE:
+ 1. Put your GTFS files into the gtfs/ folder
+ 2. At the bottom of _sql_better/load.sql_, comment out <b>LOAD DATA</b> statements for those tables/gtfs files you don't want to include. 
+ 3. 
+ 
+ 
+    cd gtfs
+    cat ../sql_better/load.sql | mysql -u username -ppassword --local-infile gtfs
+    
+ 4. Build something neat

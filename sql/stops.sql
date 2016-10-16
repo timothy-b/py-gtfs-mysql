@@ -1,24 +1,21 @@
 DROP TABLE IF EXISTS `stops`;
 
 CREATE TABLE `stops` (
-    stop_id INT(11) PRIMARY KEY,
-    stop_code VARCHAR(50),
-	stop_name VARCHAR(255),
+  stop_id VARCHAR(10) PRIMARY KEY,
+  stop_code INTEGER(10) UNIQUE,
+	stop_name VARCHAR(255) NOT NULL,
 	stop_desc VARCHAR(255),
-	stop_lat DECIMAL(8,6),
-	stop_lon DECIMAL(8,6),
-	agency_id VARCHAR(8),
-	stop_jurisdiction VARCHAR(8),
-	zone_id INT(11),
-	stop_url VARCHAR(255),
-	location_type INT(2),
-	parent_station INT(11),
-	position VARCHAR(255),
-	direction VARCHAR(255),
-	wheelchair_boarding INT(2),
-	KEY `zone_id` (zone_id),
-	KEY `stop_lat` (stop_lat),
-	KEY `stop_lon` (stop_lon),
-	KEY `location_type` (location_type),
-	KEY `parent_station` (parent_station)
+	stop_lat DECIMAL(9,6) NOT NULL,
+	stop_lon DECIMAL(9,6) NOT NULL,
+  zone_id INTEGER(10),
+  stop_url VARCHAR(255),
+  location_type TINYINT(1) DEFAULT 0,
+  parent_station TINYINT(1) DEFAULT 0,
+  stop_timezone VARCHAR(50),
+  wheelchair_boarding TINYINT(1) DEFAULT 0,
+
+  CHECK (location_type = 0 || location_type = 1),
+  CHECK (wheelchair_boarding = 0 || wheelchair_boarding = 1 || wheelchair_boarding = 2),
+
+  CONSTRAINT uc_location UNIQUE (stop_lat, stop_lon)
 );

@@ -1,19 +1,15 @@
 DROP TABLE IF EXISTS `calendar`;
 
 CREATE TABLE `calendar` (
-    service_id VARCHAR(50),
-	service_name VARCHAR(50),
-	monday TINYINT(1),
-	tuesday TINYINT(1),
-	wednesday TINYINT(1),
-	thursday TINYINT(1),
-	friday TINYINT(1),
-	saturday TINYINT(1),
-	sunday TINYINT(1),
-	start_date VARCHAR(8),	
-	end_date VARCHAR(8),start_date_timestamp INT(11),
-    end_date_timestamp INT(11),
-    KEY `service_id` (service_id),
-    KEY `start_date_timestamp` (start_date_timestamp),
-    KEY `end_date_timestamp` (end_date_timestamp)
+  service_id INTEGER(10) PRIMARY KEY,
+	monday TINYINT(1) NOT NULL,
+	tuesday TINYINT(1) NOT NULL,
+	wednesday TINYINT(1) NOT NULL,
+	thursday TINYINT(1) NOT NULL,
+	friday TINYINT(1) NOT NULL,
+	saturday TINYINT(1) NOT NULL,
+	sunday TINYINT(1) NOT NULL,
+	start_date VARCHAR(8) NOT NULL,
+	end_date VARCHAR(8) NOT NULL,
+	KEY `service_id` (service_id)
 );

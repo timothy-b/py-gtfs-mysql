@@ -1,11 +1,15 @@
 DROP TABLE IF EXISTS `calendar_dates`;
 
 CREATE TABLE `calendar_dates` (
-    `date` VARCHAR(8),
-	date_timestamp INT(11),
-    exception_type INT(2),
-	service_id VARCHAR(10),
-    KEY `service_id` (service_id),
-    KEY `date_timestamp` (date),
-    KEY `exception_type` (exception_type)    
+    service_id INTEGER(10) NOT NULL,
+    `date` VARCHAR(8) NOT NULL,
+    exception_type TINYINT(1) NOT NULL,
+
+    CHECK (exception_type = 1 || exception_type = 2),
+
+    PRIMARY KEY (service_id, `date`, exception_type),
+
+    FOREIGN KEY (service_id)
+      REFERENCES calendar(service_id)
+      ON UPDATE CASCADE ON DELETE CASCADE
 );
